@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VipexArtz 2026</title>
-  <meta name="description" content="VipexArtz 2026">
+  <title>VipexArtz</title>
+  <meta name="description" content="VipexArtz Webpage of 2026">
   <link rel="icon" type="image/svg+xml" href="resources/icons/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,10 +39,8 @@
       <div class="home-inner">
         <img src="resources/icons/logo.svg" alt="Logo" class="logo">
         <h1 class="home-title">VipexArtz</h1>
-        <p class="home-aliases">Also known as <span>anthony07</span> and <span>techyeevee</span>.</p>
-        <p class="home-bio">I create fun intro templates and other graphics for people to use!
-        </p>
-
+        <p class="home-aliases">also known as <span>anthony07</span> and <span>techyeevee</span></p>
+        <p class="home-bio">I create fun intro templates and other graphics for people to use!</p>
         <div class="home-socials">
           <a class="icon" href="https://www.youtube.com/@VipexArtz" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
@@ -83,10 +81,22 @@
 
           <article class="shop-panel">
             <p class="panel-label">Payment Methods</p>
-            <ul>
-              <li>[$] USD: PayPal & Ko-Fi</li>
-              <li>[₱] PHP: QrPH</li>
-            </ul>
+            <div class="payment-list">
+              <div class="payment-row">
+                <span class="payment-currency">USD</span>
+                <div>
+                  <strong>PayPal & Ko-fi</strong>
+                  <small>For international payments</small>
+                </div>
+              </div>
+              <div class="payment-row">
+                <span class="payment-currency">PHP</span>
+                <div>
+                  <strong>QrPH</strong>
+                  <small>For local payments</small>
+                </div>
+              </div>
+            </div>
           </article>
         </div>
       </div>
@@ -162,19 +172,27 @@
         <p class="about-lead">Hey! I'm Anthony, also known as Vipex. I'm mostly known for creating lots of free intro templates on Panzoid, while my other alias, techyeevee, is where I share my silly arts and animations!</p>
         <p class="about-detail">Outside of my creative work, I enjoy playing Tetris, taking landscape photos, and experimenting with mobile electronics.</p>
        <p class="about-detail">I'm currently a BSECE student studying in the Philippines.</p>
-
-        <div class="about-timeline">
+       
+        <details class="about-timeline">
+          <summary>timeline <span aria-hidden="true">+</span></summary>
+          <div class="timeline-list">
           <article class="timeline-entry">
             <p class="timeline-date">February 11, 2011</p>
-            <p class="timeline-copy">I've discovered Tetris Battle on Facebook and have been playing ever since. All thanks to my cousin "Rom Rom" who passed away at May 10, 2015.</p>
+            <p class="timeline-copy">I've discovered Tetris Battle on Facebook and have been playing similar games ever since. All thanks to my older cousin "Rom Rom" who unfortunately passed away at May 10, 2015. Every achievement I reach will be dedicated to him.</p>
             <p class="timeline-copy">As of Sept 14, 2025, I'm currently the fastest Tetris player in our region with a <a href="https://youtu.be/Ejiwki8vyxg" target="_blank" rel="noopener noreferrer">40 Line sprint of 18.606s ↗</a></p>
             <p class="timeline-copy">I go by the username "anthony07" in the Tetris Community.</p>
           </article>
           <article class="timeline-entry">
             <p class="timeline-date">June 15, 2015</p>
-            <p class="timeline-copy">I was just a kid who had high interest in gaming intros from certain YouTubers. Despite having such a potato laptop, this is where I discovered Panzoid and where my motion design career began.</p>
+            <p class="timeline-copy">I was just a kid who had high interest in gaming intros from certain YouTubers. Despite having such a potato laptop, that was where I discovered about Panzoid and officially started my motion design career.</p>
           </article>
-        </div>
+
+          <article class="timeline-entry">
+            <p class="timeline-date">March 17, 2017</p>
+            <p class="timeline-copy">My career in hardware repair began when I received a New 3DS XL as a late birthday gift. This made me realize how expensive game cartridiges were. I discovered modding and successfully jailbroke both the console and my personal iPhone 5c that same day. This deep dive into custom firmware and modding made me the mobile electronics technician I am today.</p>
+          </article>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -220,11 +238,11 @@
       </div>
     </section>
 
-      <footer class="card-footer">
-        <span>VipexArtz © 2026</span>
-        <span>Last Updated: 9/18/26</span>
-      </footer>
     </div>
+    <footer class="card-footer">
+      <span>VipexArtz © 2026</span>
+      <span>Last Updated: 9/19/26</span>
+    </footer>
   </main>
 
   <script src="script.js"></script>

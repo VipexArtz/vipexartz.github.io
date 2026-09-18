@@ -26,15 +26,11 @@
   function showPage(id){
     pages.forEach(p => p.classList.toggle('active', p.id === id));
     navLinks.forEach(link => link.classList.toggle('is-active', link.dataset.target === id));
-    // update URL hash without scrolling
     history.replaceState(null, '', `#${id}`);
-    // show header logo when not on home
     if(header) header.classList.toggle('show-logo', id !== 'home');
-    // toggle body class for home/logo transitions
     document.body.classList.toggle('home-hidden', id !== 'home');
   }
 
-  // header logo clickable
   const logoLink = document.getElementById('logo-link');
   if(logoLink){
     logoLink.addEventListener('click', (e) => {
@@ -43,7 +39,6 @@
     });
   }
 
-  // nav link clicks
   navLinks.forEach(a => {
     a.addEventListener('click', (e) => {
       e.preventDefault();
@@ -52,16 +47,14 @@
     });
   });
 
-  // If hash corresponds to a known page, show it; otherwise show home.
   const initial = location.hash ? location.hash.replace('#','') : 'home';
   const known = Array.from(pages).some(p => p.id === initial);
   showPage(known ? initial : 'home');
 
-  // Tetromino background generator (continuous spawn)
+  // tetris bg 
   (function generateTetrominos(){
     const svg = document.querySelector('.animated-bg svg');
     if(!svg || reduceMotion) return;
-    // remove any previous pieces and clear prior spawner
     svg.querySelectorAll('g.tetra').forEach(n => n.remove());
     if(window._tetrominoSpawner) clearInterval(window._tetrominoSpawner);
 
@@ -73,7 +66,6 @@
 
     function createPiece(){
       if(!svg) return;
-      // keep count under max
       if(total >= maxPieces){
         const first = svg.querySelector('g.tetra');
         if(first){ first.remove(); total--; }
@@ -110,17 +102,15 @@
 
       rects.forEach(r => gx.appendChild(r));
       svg.appendChild(gx);
-      // trigger fade-in/enter transition
+      // fade-in/enter transition
       requestAnimationFrame(()=> gx.classList.add('entered'));
       total++;
-      // cleanup after the piece finishes falling (duration + buffer)
       setTimeout(()=>{ if(gx && gx.parentNode) { gx.parentNode.removeChild(gx); total--; } }, (dur*1000) + 15000);
     }
 
     // initial batch
     for(let i=0;i<initialCount;i++) createPiece();
 
-    // Keep the scene active shortly after load without overloading the page.
     window._tetrominoSpawner = setInterval(()=>{
       const n = 2;
       for(let i=0;i<n;i++) createPiece();
