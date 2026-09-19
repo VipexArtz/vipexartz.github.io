@@ -4,6 +4,8 @@
   const header = document.querySelector('.site-header');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
   let lastY = window.scrollY;
   let scrollTicking = false;
 
@@ -16,6 +18,7 @@
     scrollTicking = false;
   }
 
+  
   window.addEventListener('scroll', () => {
     if(!scrollTicking) {
       window.requestAnimationFrame(updateHeader);
@@ -29,6 +32,7 @@
     history.replaceState(null, '', `#${id}`);
     if(header) header.classList.toggle('show-logo', id !== 'home');
     document.body.classList.toggle('home-hidden', id !== 'home');
+    document.body.classList.toggle('home-page', id === 'home');
   }
 
   const logoLink = document.getElementById('logo-link');
@@ -50,6 +54,7 @@
   const initial = location.hash ? location.hash.replace('#','') : 'home';
   const known = Array.from(pages).some(p => p.id === initial);
   showPage(known ? initial : 'home');
+  window.scrollTo(0, 0);
 
   // tetris bg 
   (function generateTetrominos(){
