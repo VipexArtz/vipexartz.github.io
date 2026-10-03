@@ -2,6 +2,8 @@
   const pages = document.querySelectorAll('.page');
   const navLinks = document.querySelectorAll('nav a[data-target]');
   const header = document.querySelector('.site-header');
+  const card = document.querySelector('.card');
+  const footer = document.querySelector('.card-footer');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -18,6 +20,18 @@
     scrollTicking = false;
   }
 
+  function updateScrollMode() {
+    if(!card || !footer) return;
+    const cardBounds = card.getBoundingClientRect();
+    const footerBounds = footer.getBoundingClientRect();
+    const fitsViewport = cardBounds.top >= 0 && footerBounds.bottom <= window.innerHeight;
+    document.documentElement.classList.toggle('fit-viewport', fitsViewport);
+  }
+
+  function scheduleScrollModeUpdate() {
+    window.requestAnimationFrame(updateScrollMode);
+  }
+
   
   window.addEventListener('scroll', () => {
     if(!scrollTicking) {
@@ -25,14 +39,21 @@
       scrollTicking = true;
     }
   }, {passive:true});
+  window.addEventListener('resize', scheduleScrollModeUpdate, {passive:true});
+  document.querySelectorAll('.about-timeline').forEach(timeline => {
+    timeline.addEventListener('toggle', scheduleScrollModeUpdate);
+  });
+  if(card && 'ResizeObserver' in window) {
+    new ResizeObserver(scheduleScrollModeUpdate).observe(card);
+  }
 
-  function showPage(id){
+  function showPage(id, updateUrl = true){
     pages.forEach(p => p.classList.toggle('active', p.id === id));
     navLinks.forEach(link => link.classList.toggle('is-active', link.dataset.target === id));
-    history.replaceState(null, '', `#${id}`);
+    if(updateUrl) history.replaceState(null, '', `#${id}`);
     if(header) header.classList.toggle('show-logo', id !== 'home');
     document.body.classList.toggle('home-hidden', id !== 'home');
-    document.body.classList.toggle('home-page', id === 'home');
+    scheduleScrollModeUpdate();
   }
 
   const logoLink = document.getElementById('logo-link');
@@ -53,8 +74,7 @@
 
   const initial = location.hash ? location.hash.replace('#','') : 'home';
   const known = Array.from(pages).some(p => p.id === initial);
-  showPage(known ? initial : 'home');
-  window.scrollTo(0, 0);
+  showPage(known ? initial : 'home', false);
 
   // tetris bg 
   (function generateTetrominos(){
