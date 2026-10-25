@@ -72,25 +72,66 @@
     });
   });
 
-  const initial = location.hash ? location.hash.replace('#','') : 'home';
-  const known = Array.from(pages).some(p => p.id === initial);
-  showPage(known ? initial : 'home', false);
+  const termsButtons = document.querySelectorAll('.terms-switch-button');
+  function selectTermsPanel(panelId, updateUrl = false) {
+    const selectedButton = Array.from(termsButtons).find(button => button.dataset.termsPanel === panelId);
+    if(!selectedButton) return;
+
+    termsButtons.forEach(button => {
+      const active = button === selectedButton;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-selected', String(active));
+      button.tabIndex = active ? 0 : -1;
+    });
+    document.querySelectorAll('.terms-panel').forEach(panel => {
+      const active = panel.id === panelId;
+      panel.classList.toggle('active', active);
+      panel.hidden = !active;
+    });
+    if(updateUrl) {
+      history.replaceState(null, '', panelId === 'terms-commission' ? '#terms-commission' : '#terms');
+    }
+    scheduleScrollModeUpdate();
+  }
+
+  termsButtons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      selectTermsPanel(button.dataset.termsPanel, true);
+    });
+
+    button.addEventListener('keydown', event => {
+      if(!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+      event.preventDefault();
+      const direction = event.key === 'ArrowRight' ? 1 : -1;
+      termsButtons[(index + direction + termsButtons.length) % termsButtons.length].focus();
+    });
+  });
+
+  const initial = location.hash ? location.hash.slice(1) : 'home';
+  const initialPanel = initial === 'terms-commission' ? initial : null;
+  const initialPage = initialPanel ? 'terms' : initial;
+  const known = Array.from(pages).some(p => p.id === initialPage);
+  showPage(known ? initialPage : 'home', false);
+  if(initialPanel) selectTermsPanel(initialPanel);
 
   // tetris bg 
   (function generateTetrominos(){
     const svg = document.querySelector('.animated-bg svg');
     if(!svg || reduceMotion) return;
-    svg.querySelectorAll('g.tetra').forEach(n => n.remove());
-    if(window._tetrominoSpawner) clearInterval(window._tetrominoSpawner);
 
     const colors = ['#A0E7E5','#B5E2FA','#FFD3B6','#FFF1C1','#CAFFBF','#E4C1F9','#FFADAD'];
+    const shapes = [
+      [[0, 0], [20, 0], [40, 0], [60, 0]],
+      [[0, 0], [20, 0], [0, 20], [20, 20]],
+      [[0, 0], [0, 20], [0, 40], [20, 40]],
+      [[0, 20], [20, 20], [40, 20], [20, 0]]
+    ];
     const vw = 1200;
     const maxPieces = 120;
     const initialCount = 60;
     let total = 0;
 
     function createPiece(){
-      if(!svg) return;
       if(total >= maxPieces){
         const first = svg.querySelector('g.tetra');
         if(first){ first.remove(); total--; }
@@ -104,28 +145,17 @@
       const s = (0.12 + Math.random()*0.18).toFixed(3);
       gx.setAttribute('style', `--x:${x}px; --dur:${dur}s; --delay:${delay}s; --s:${s}`);
       const color = colors[Math.floor(Math.random()*colors.length)];
-      const variant = Math.floor(Math.random()*4);
+      const variant = Math.floor(Math.random()*shapes.length);
       const size = 20;
-      const rects = [];
-
-      if(variant===0){ // I
-        for(let k=0;k<4;k++){
-          const r = document.createElementNS('http://www.w3.org/2000/svg','rect');
-          r.setAttribute('x', (k*size).toString()); r.setAttribute('y','0'); r.setAttribute('width', size); r.setAttribute('height', size); r.setAttribute('fill', color);
-          rects.push(r);
-        }
-      } else if(variant===1){ // square
-        const coords = [[0,0],[20,0],[0,20],[20,20]];
-        coords.forEach(c => { const r=document.createElementNS('http://www.w3.org/2000/svg','rect'); r.setAttribute('x', c[0]); r.setAttribute('y', c[1]); r.setAttribute('width', size); r.setAttribute('height', size); r.setAttribute('fill', color); rects.push(r); });
-      } else if(variant===2){ // L
-        const coords = [[0,0],[0,20],[0,40],[20,40]];
-        coords.forEach(c => { const r=document.createElementNS('http://www.w3.org/2000/svg','rect'); r.setAttribute('x', c[0]); r.setAttribute('y', c[1]); r.setAttribute('width', size); r.setAttribute('height', size); r.setAttribute('fill', color); rects.push(r); });
-      } else { // T
-        const coords = [[0,20],[20,20],[40,20],[20,0]];
-        coords.forEach(c => { const r=document.createElementNS('http://www.w3.org/2000/svg','rect'); r.setAttribute('x', c[0]); r.setAttribute('y', c[1]); r.setAttribute('width', size); r.setAttribute('height', size); r.setAttribute('fill', color); rects.push(r); });
-      }
-
-      rects.forEach(r => gx.appendChild(r));
+      shapes[variant].forEach(([x, y]) => {
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', x);
+        rect.setAttribute('y', y);
+        rect.setAttribute('width', size);
+        rect.setAttribute('height', size);
+        rect.setAttribute('fill', color);
+        gx.appendChild(rect);
+      });
       svg.appendChild(gx);
       // fade-in/enter transition
       requestAnimationFrame(()=> gx.classList.add('entered'));
@@ -136,11 +166,16 @@
     // initial batch
     for(let i=0;i<initialCount;i++) createPiece();
 
-    window._tetrominoSpawner = setInterval(()=>{
+    setInterval(()=>{
       const n = 2;
       for(let i=0;i<n;i++) createPiece();
     }, 1800);
   })();
+
+  const lastUpdated = document.getElementById('last-updated');
+  const fileDate = new Date(document.lastModified);
+  const dateOptions = { year: '2-digit', month: 'numeric', day: 'numeric' };
+  lastUpdated.textContent = fileDate.toLocaleDateString('en-US', dateOptions);
 
   document.documentElement.classList.add('ready');
 })();

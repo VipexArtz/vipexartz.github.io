@@ -41,9 +41,7 @@
         <h1 class="home-title">VipexArtz</h1>
         <p class="home-aliases">also known as <span>anthony07</span> and <span>techyeevee</span></p>
         <p class="home-aliases">Tech enthusiast · Digital Artist · Motion Designer · Tetris Expert</p>
-        <p class="home-bio"></p> <!-- quite lazy to think of a bio so i'll leave it empty for now -->
         <div class="home-socials">
-          </a>
           <a class="icon" href="https://panzoid.com/users/VipexArtz" target="_blank" rel="noopener noreferrer" aria-label="Panzoid">
             <img src="resources/icons/Pz.svg" alt="Panzoid" width="16" height="16">
           </a>
@@ -82,7 +80,7 @@
           </article>
 
           <article class="shop-panel">
-            <p class="panel-label">Payment Methods</p>
+            <p class="panel-label">Accepted Payment Methods</p>
             <div class="payment-list">
               <div class="payment-row">
                 <span class="payment-currency">USD</span>
@@ -94,8 +92,8 @@
               <div class="payment-row">
                 <span class="payment-currency">PHP</span>
                 <div>
-                  <strong>QrPH</strong>
-                  <small>For local payments</small>
+                  <strong>InstaPay QR</strong>
+                  <small>For local payments ($1 = 55 PHP)</small>
                 </div>
               </div>
             </div>
@@ -108,63 +106,64 @@
       <article class="terms-content">
         <header class="terms-header">
           <h2>Terms of Service</h2>
-         <p class="terms-intro">Note: This only applies to Motion Graphics</p>
-                   <p class="terms-updated">Last Updated: October 14, 2026</p>
+          <p class="terms-updated">Last Updated: October 26, 2026</p>
         </header>
-        <p class="terms-lead">By downloading or using my digital assets (such as templates, motion graphics, and personalized creations), you accept and agree to follow these Terms of Service.</p>
-        <section class="terms-block terms-summary">
-          <div class="terms-section-head">
-            <h3>Templates</h3>
-            <a class="terms-full-inline" href="https://pastebin.com/CiNX19Y6" target="_blank" rel="noopener noreferrer">Full Detailed ToS ↗</a>
-          </div>
-          <div class="terms-table-wrap">
-            <table class="terms-table">
-              <tbody>
-                <tr>
-                  <td>Free & Modifiable</td>
-                  <td>Templates are free to use and customize for personal projects.</td>
-                </tr>
-                <tr>
-                  <td>Personal Use</td>
-                  <td>Commercial use and client work are prohibited without permission. Do not resell creations on sites such as Fiverr.</td>
-                </tr>
-                <tr>
-                  <td>Crediting</td>
-                  <td>Optional for general use, but required if you edit a template for someone else.</td>
-                </tr>
-                <tr>
-                  <td>Watermarks & Logos</td>
-                  <td>You may remove watermarks, but you may not use my logo or claim that you created a template from scratch.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-             <section class="terms-block terms-summary">
-          <h3>Payment, Refunds & Revisions</h3>
-          <div class="terms-table-wrap">
-            <table class="terms-table">
-              <tbody>
-                <tr>
-                  <td>Payment</td>
-                  <td>Payment is required before I start working on your request.</td>
-                </tr>
-                <tr>
-                  <td>Refunds</td>
-                  <td>Strictly no refunds once your request has been completed and sent. Refunds are only considered if I'm over the due date or I'm unable to complete the work.</td>
-                </tr>
-                <tr>
-                  <td>Revisions</td>
-                  <td>Small revisions are free, such as color, text, minor spelling mistakes, etc. But major revisions may cost extra.</td>
-                </tr>
-                <tr>
-                  <td>Rights</td>
-                  <td>I retain full copyright and commercial rights to my creations. If you require any changes to these rights, we can discuss it further.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
+        <div class="terms-switch" role="tablist" aria-label="Terms of Service category">
+          <button class="terms-switch-button active" type="button" role="tab" aria-selected="true" aria-controls="terms-motion" id="terms-motion-tab" data-terms-panel="terms-motion"><span class="terms-switch-label">Motion Graphics</span></button>
+          <button class="terms-switch-button" type="button" role="tab" aria-selected="false" aria-controls="terms-commission" id="terms-commission-tab" data-terms-panel="terms-commission"><span class="terms-switch-label">Arts & Animation</span></button>
+        </div>
+        <div class="terms-panel active" id="terms-motion" role="tabpanel" aria-labelledby="terms-motion-tab">
+          <p class="terms-lead">By downloading or using my motion graphics assets, including templates and related digital creations, you accept and agree to follow these Terms of Service.</p>
+          <section class="terms-block terms-summary">
+            <div class="terms-section-head">
+              <h3>Panzoid Templates</h3>
+              <a class="terms-full-inline" href="https://pastebin.com/CiNX19Y6" target="_blank" rel="noopener noreferrer">Full Detailed TOS ↗</a>
+            </div>
+            <div class="terms-table-wrap">
+              <table class="terms-table">
+                <tbody>
+                  <tr>
+                    <td><strong class="terms-card-title">Free to Use</strong><ul><li>Most of my templates are free to use and customizable for personal projects.</li></ul></td>
+                  </tr>
+                  <tr>
+                    <td><strong class="terms-card-title">Personal Use Only</strong><ul><li>Commercial use and client work are prohibited without permission.</li><li>Do not resell creations on sites such as Fiverr.</li></ul></td>
+                  </tr>
+                  <tr>
+                    <td><strong class="terms-card-title">Crediting</strong><ul><li>Optional for general use.</li><li>Required if you edit a template for someone else.</li></ul></td>
+                  </tr>
+                  <tr>
+                    <td><strong class="terms-card-title">Watermarks & Logos</strong><ul><li>You may remove watermarks.</li><li>You may not use my logo or claim that you created a template from scratch.</li></ul></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <div class="terms-panel" id="terms-commission" role="tabpanel" aria-labelledby="terms-commission-tab" hidden>
+          <p class="terms-lead">By commissioning any kind of artwork from me, you accept and agree to follow these Terms of Service.</p>
+          <p class="terms-lead"><strong>Notice:</strong> I have the right to refuse or cancel any commissions for any reason.</p>
+          <section class="terms-block terms-summary">
+            <div class="terms-table-wrap">
+              <table class="terms-table">
+                <tbody>
+                  <tr>
+                    <td><strong class="terms-card-title">Usage & Rights</strong><ul><li>You have the right to use your commissioned artwork for any personal & non-commercial purposes with credit.</li><li>If you'd like to print the artwork for stickers, keychains, or any kinds of merch, please let me know!</li><li>With that said, please keep in mind that <strong>I still retain the rights to the artwork</strong> and may not be used for commercial purposes without my permission.</li></ul></td>
+                  </tr>
+                  <tr>
+                    <td><strong class="terms-card-title">Completion Time</strong><ul><li><strong>Time may vary</strong> based on my free-time and motivation as I am a very busy person irl, (engineering uni + on-call tech work stuff)</li><li>It would normally take <strong>around 2-4 weeks or earlier.</strong> In case of delays, I will notify you as soon as possible!</li><li>I unfortunately don't do deadlines with any commission for this reason.</li></ul></td>
+                  </tr>
+                  <tr>
+                    <td><strong class="terms-card-title">Payment & Refunds</strong><ul><li>Payment is done in USD ($) via PayPal/Ko-fi.</li><li>I also accept PHP (₱) via InstaPay QR if you're in the Philippines</li><li><strong>A complete refund will be given if I failed to do your commission after five or more weeks of waiting.</strong></li></ul></td>
+                  </tr>
+                  <tr>
+                    <td><strong class="terms-card-title">References & Revisions</strong><ul><li>Please provide a clear reference. If you do not have one, I'll do my best to work with your provided details.</li><li>If I've made a mistake with the final artwork, please let me know!</li><li>I'm able to do <strong>up to 3</strong> minor revisions within a month of completion. <strong>Major revisions may cost extra.</strong></li></ul></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
 
       </article>
     </section>
@@ -172,12 +171,14 @@
     <section id="about" class="page section">
       <div class="content about-content">
         <h2>About Me</h2>
-        <p class="about-lead">Hey! I'm Anthony, a digital artist, Tetris expert, and a well-known motion graphic designer who's been creating lots of free-to-use templates on Panzoid since August 2016.</p>
-        <p class="about-detail">I also go by the aliases @techyeevee (for arts & animation) and @sillyfennec or @anthony07 (for Tetris & gaming content).</p>
-       <p class="about-detail">Outside of my creativity, I'm a technician that loves to tinker with a lot of electronic devices. I'm currently a BSECE student studying in the Philippines.</p>
-       <p class="about-detail">I'm currently the #2 fastest Filipino Tetris player with a <a href="https://youtu.be/-ra8t9dE0Ec" target="_blank" rel="noopener noreferrer">40L sprint of 17.113s ↗</a></p>
+        <div class="about-copy">
+          <p class="about-lead">Hey! I'm Anthony, a Multimedia artist and a Tetris expert, who's well-known for creating lots of free-to-use templates on Panzoid since August 2016.</p>
+          <p class="about-detail">I also go by the aliases @techyeevee (for arts & animation) and @sillyfennec or @anthony07 (for Tetris & gaming content).</p>
+          <p class="about-detail">Outside of my creativity, I'm a technician that loves to tinker with a lot of electronic devices.</p>
+          <p class="about-detail">I'm currently the #2 fastest Filipino Tetris player with a <a href="https://youtu.be/-ra8t9dE0Ec" target="_blank" rel="noopener noreferrer">40L sprint of 17.113s ↗</a></p>
+        </div>
 
-               <details class="about-timeline about-devices">
+        <details class="about-timeline about-devices">
           <summary>Current Gear & Setup<span aria-hidden="true">+</span></summary>
           <div class="timeline-list">
             <article class="timeline-entry">
@@ -187,36 +188,10 @@
               <p class="timeline-copy">RAM: 32GB DDR5-4800</p>
             </article>
             <article class="timeline-entry">
-              <p class="timeline-date">Peripherals</p>
-              <p class="timeline-copy">Monitor: Acer Nitro VG0 VG240Y 23.8" FHD IPS 180hz </p>
-              <p class="timeline-copy">Keyboard: Redragon Lakshmi K606 (Outemu Brown & Silver)</p>
-              <p class="timeline-copy">Graphic Tablet: Wacom Intous S (2018)</p>
+              <p class="timeline-date">Art Peripherals</p>
+              <p class="timeline-copy">PC: Wacom Intous S (2018) + FireAlpaca</p>
+              <p class="timeline-copy">Mobile: Samsung Galaxy Tab S8 + IbisPaint & Flipaclip</p>
             </article>
-                        </article>
-            <article class="timeline-entry">
-              <p class="timeline-date">Mobile Devices</p>
-              <p class="timeline-copy">Samsung Galaxy S24 Ultra</p>
-              <p class="timeline-copy">Samsung Galaxy Tab S8</p>
-            </article>
-          </div>
-        </details>
-        
-        <details class="about-timeline">
-          <summary>timeline <span aria-hidden="true">+</span></summary>
-          <div class="timeline-list">
-          <article class="timeline-entry">
-            <p class="timeline-date">February 11, 2011</p>
-            <p class="timeline-copy">The time I discovered Tetris Battle and have been playing similar games ever since. All thanks to my older cousin "Rom Rom" who unfortunately passed away at May 10, 2015. Every achievement I do will be dedicated to him.</p>
-          </article>
-          <article class="timeline-entry">
-            <p class="timeline-date">June 15, 2015</p>
-            <p class="timeline-copy">I was just a kid who had high interest in gaming intros from certain YouTubers. Despite having such a potato laptop while trying to find a program to create my own intro designs as well, that was the time I discovered Panzoid and officially started my motion design career.</p>
-          </article>
-
-          <article class="timeline-entry">
-            <p class="timeline-date">March 17, 2017</p>
-            <p class="timeline-copy">I received a New 3DS XL as a late birthday gift and realized how expensive buying games were. I discovered modding and successfully jailbroke both my 3ds and my iPhone 5c that same day. I really got deep through the cfw/modding community and later on, that makes me the tech enthusiast I am today!</p>
-          </article>
           </div>
         </details>
       </div>
@@ -227,12 +202,12 @@
         <div class="contact-header">
           <h2>Contact & Socials</h2>
         </div>
-<div class="contact-intro">Not all my socials are listed below, but feel free to reach out! </div>
+<div class="contact-intro">Only relevant ones are shown below, feel free to reach out if you have any questions! </div>
         <div class="contact-grid">
           <article class="contact-card">
             <p class="panel-label">General</p>
             <ul>
-              <li>Discord: <strong>@flipnoteartist</strong> or <strong>VipexArtz#1623</strong> <span>(DMs only)</span></li>
+              <li>Discord: <strong>@flipnoteartist</strong><br><span>(Legacy: VipexArtz#1623)</span></li>
               <li>Email: <a href="mailto:vipexartz@gmail.com">vipexartz@gmail.com</a></li>
             </ul>
           </article>
@@ -258,6 +233,7 @@
             <div class="social-list">
               <a href="https://www.youtube.com/@anthony07" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
               <a href="https://www.facebook.com/VipexArtz" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+              <a href="https://ko-fi.com/vipex" target="_blank" rel="noopener noreferrer">Ko-fi ↗</a>
             </div>
           </article>
         </div>
@@ -270,16 +246,6 @@
       <span>Last Updated: <span id="last-updated">Loading...</span></span>
     </footer>
   </main>
-
-  <script>
-  const fileDate = new Date(document.lastModified);
-  
-  // last updated thing
-  const options = { year: '2-digit', month: 'numeric', day: 'numeric' };
-  const formattedDate = fileDate.toLocaleDateString('en-US', options);
-  
-  document.getElementById('last-updated').textContent = formattedDate;
-</script>
 
   <script src="script.js"></script>
 </body>
