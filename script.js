@@ -11,6 +11,13 @@
   let lastY = window.scrollY;
   let scrollTicking = false;
 
+  function resetHeaderPosition() {
+    lastY = window.scrollY;
+    if(header) {
+      header.style.transform = 'translateY(0)';
+    }
+  }
+
   function updateHeader() {
     const currentY = window.scrollY;
     if(header) {
@@ -39,6 +46,9 @@
       scrollTicking = true;
     }
   }, {passive:true});
+  window.addEventListener('hashchange', () => {
+    resetHeaderPosition();
+  });
   window.addEventListener('resize', scheduleScrollModeUpdate, {passive:true});
   document.querySelectorAll('.about-timeline').forEach(timeline => {
     timeline.addEventListener('toggle', scheduleScrollModeUpdate);
@@ -53,6 +63,7 @@
     if(updateUrl) history.replaceState(null, '', `#${id}`);
     if(header) header.classList.toggle('show-logo', id !== 'home');
     document.body.classList.toggle('home-hidden', id !== 'home');
+    resetHeaderPosition();
     scheduleScrollModeUpdate();
   }
 
